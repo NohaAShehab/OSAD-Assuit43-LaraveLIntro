@@ -15,6 +15,8 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    # I need from this factory objects with this data
     public function definition(): array
     {
         return [

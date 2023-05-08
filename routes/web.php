@@ -63,6 +63,23 @@ Route::get("/courses", [HomepageController::class, 'getCourses']);
 ####################
 
 
+use App\Http\Controllers\ProductController;
+Route::get("/products/index", [ProductController::class, 'products_index']);
+Route::get("/products/create", [ProductController::class, 'create'])->name('products.create');
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+Route::post("/products", [ProductController::class, 'save']);
+Route::get('/products/{id}/destroy', [ProductController::class, 'destroy'])->name('products.destroy');
+
+
+
+
+
+
+
+
+
+
 
 
 

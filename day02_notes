@@ -1,0 +1,65 @@
+
+
+## connect application to the database --->
+
+---> Crud operation on the database
+
+
+#########3 connect to the database
+
+---> MySQL --> laravel read configration from config/database.php
+
+to add connection credits you need to modify it in the .env file
+
+
+
+#### create database ---> via laravel
+
+
+==> create migration files ? =-> php files  ---> write the structure you need to create in the database
+
+
+### php artisan
+php artisan make:migrations migration
+new file created in database/migrations
+
+--in the migration file ?
+
+up() ---> calling when you run the migration
+
+down() ---> calling when you rollback the migration
+
+### target - -> create table products
+
+php artisan make:migration create_products_table
+https://laravel.com/docs/10.x/migrations
+
+available columns datatypes
+https://laravel.com/docs/10.x/migrations#available-column-types
+### not that in the table created via migration files
+the default of the columns is not null
+
+################# Models
+
+---> table --> users  ---> Associated with Model User
+---> factory -->class used to  create dump records from its associated model in the database
+
+
+### orm 000> get data --> create
+
+php artisan tinker
+
+
+orm functions  --->
+retrieve data from model
+https://laravel.com/docs/10.x/eloquent#retrieving-models
+
+
+Model_name =User  ---> table users
+table_name= products  ---> Product
+
+
+### csrf token ?
+https://laravel.com/docs/10.x/csrf
+
+

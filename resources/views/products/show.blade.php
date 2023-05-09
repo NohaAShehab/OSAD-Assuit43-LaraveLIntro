@@ -9,12 +9,13 @@
 @section('content')
     <h1> {{$product->name}} Info</h1>
     <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="{{asset('images/products/'.$product->image)}}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{$product->name}}</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <p class="card-text">Price: {{$product->price}}</p>
+            <a href="{{route('products.index')}}" class="btn btn-primary">Back to all proudcts </a>
         </div>
     </div>
 
+    <img src="{{asset('images/products/'.$product->image)}}" >
 @endsection

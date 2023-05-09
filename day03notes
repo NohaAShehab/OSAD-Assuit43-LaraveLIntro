@@ -1,0 +1,47 @@
+
+
+#### cycle of the insert
+
+===> issue I need to apply validation on the form?
+
+use request()->validate([]);
+https://laravel.com/docs/10.x/validation
+
+validation rules?
+https://laravel.com/docs/10.x/validation#available-validation-rules
+
+## display error , old data
+https://laravel.com/docs/10.x/validation#quick-displaying-the-validation-errors
+
+https://laravel.com/docs/10.x/validation#repopulating-forms
+
+
+###############################3
+add image to the product
+1- modify model to accept image model ?
+    --> create migration file for adding image to the database
+    --> create migration file for modify image field to the database
+    --> modify column using migration
+    composer require doctrine/dbal
+
+
+2- upload image to the product
+
+
+3- Resource controller
+---> element database --->
+    create
+    view
+    edit
+    delete
+
+
+--> controller , model --> books
+php artisan make:migration create_books_table
+
+php artisan makemode Book
+
+
+php artisan make:controller BookController --resource
+
+

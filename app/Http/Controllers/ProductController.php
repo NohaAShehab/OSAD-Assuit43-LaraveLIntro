@@ -40,13 +40,21 @@ class ProductController extends Controller
     }
 
     function save(){
-//        dd($_POST);
+        ## validate request arguments before submit object...
+        request()->validate(
+            ["name"=>"required|min:5",
+                "price"=>'integer|min:5|max:10'
+            ]);
 
-//        dd(\request());
-
-//        dd(\request()->all());
-        $product_info= request()->all();
+        $product_info= request()->all();  # get request arguments
         $product = new Product();
+        $image = request()->image;
+        if($image){
+            $image_name = time().'.'.$image->extension();
+            $product->image = $image_name;
+            $image->move(public_path('images/products'), $image_name);
+            # I need the actual path to move the image
+        }
         $product->name= $product_info['name'];
         $product->price = $product_info['price'];
         $product->save();

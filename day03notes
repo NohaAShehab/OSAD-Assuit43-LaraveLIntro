@@ -42,6 +42,13 @@ php artisan make:migration create_books_table
 php artisan makemode Book
 
 
-php artisan make:controller BookController --resource
+php artisan make:controller -r BookController
+
+php artisan make:controller BookController -m Book
 
 
+request_methods
+get
+post
+put/patch --> update existing resource ?
+delete  --> form

@@ -88,6 +88,15 @@ Route::get("books/{book}/edit",[BookController::class, 'edit'])->name("books.edi
 Route::put('/books/{book}', [BookController::class, 'update'])->name('books.update');
 Route::delete("/books/{book}", [BookController::class, 'destroy'])->name('books.destroy');
 
+## create routes for specific resource
+
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
+
+Route::resource('/articles',ArticleController::class );
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+
 
 
 

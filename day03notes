@@ -52,3 +52,38 @@ get
 post
 put/patch --> update existing resource ?
 delete  --> form
+
+
+#####################33
+
+php artisam make:model Article --all
+
+
+################  relation
+author may write many articles ?
+
+one to many ?
+
+
+## db?
+1- migration
+php artisan make:migration add_user_id_to_articles_table
+
+
+in migatrion file
+            $table->foreignId('user_id')->nullable()->constrained();
+$table->dropForeign(['user_id']);
+
+### 3- goto controller
+
+
+
+
+
+
+
+
+
+
+
+

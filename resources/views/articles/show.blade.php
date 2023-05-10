@@ -15,6 +15,7 @@
             <a href="{{route('articles.index')}}" class="btn btn-primary">Back to all articles </a>
         </div>
     </div>
+    <h1> {{$article['title']}}</h1>
     @if($article->user)
         @dump($article->user)
         {{$article->user->email}}

@@ -1,0 +1,19 @@
+
+
+
+Authentication
+make user  --> access pages --> valid username and password
+    ---> login
+
+    --->
+
+1- composer require laravel/ui --> css, bootstrap --> vue , react
+
+2- I need to tell the application to use laravel/ui --auth
+
+php artisan ui bootstrap --auth
+
+
+
+
+Authorization

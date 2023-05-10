@@ -121,3 +121,7 @@ Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

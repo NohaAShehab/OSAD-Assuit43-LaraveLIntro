@@ -12,8 +12,23 @@ make user  --> access pages --> valid username and password
 2- I need to tell the application to use laravel/ui --auth
 
 php artisan ui bootstrap --auth
+====> authenticate route ====>
+--> only logged_in users can create book
+    ==> auth --->
 
+1- in web.php
+Route::get('/books/create', [BookController::class, 'create'])
+    ->name('books.create')->middleware('auth');
+
+ 2- in controller ?
+ function __construct(){
+ //        $this->middleware('auth')->only('store', 'update', 'destroy');
+         $this->middleware('auth')->except('show', 'index');
+     }
+
+   ## book ---> created by user who is logged_in now
 
 
 
 Authorization
+

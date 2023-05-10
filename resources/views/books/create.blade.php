@@ -5,6 +5,8 @@
 
 
 @section('content')
+    {{Auth::user()}}
+
 
     <h1> Create Book </h1>
 

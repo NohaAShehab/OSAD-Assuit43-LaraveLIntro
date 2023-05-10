@@ -11,5 +11,5 @@ class Book extends Model
 
     # default --> model --> database --> books
 //    protected $table = 'books';
-    protected $fillable = ['title', 'no_of_pages', 'image', 'description'];
+    protected $fillable = ['title', 'no_of_pages', 'image', 'description', 'user_id'];
 }

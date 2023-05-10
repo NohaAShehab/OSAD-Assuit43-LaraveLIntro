@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+
 
 class BookController extends Controller
 {
@@ -19,7 +22,7 @@ class BookController extends Controller
     public function index()
     {
         //
-        $books = Book::all();
+        $books = Book::paginate(5);
 
         return view('books.index',['books'=>$books]);
     }
@@ -47,20 +50,30 @@ class BookController extends Controller
         ],[
             "title"=>"invalid title"
         ]);
-        $request_data = $request->all();
 
-        $book=Book::create($request_data);
 
-        if($request->image){
-            $image_name = time().'.'.$request->image->extension();
+//        dd($request->all());
+        $user = Auth::user();
+//        dd(Auth::user());
 
-            $request->image->move(public_path('/images/books'), $image_name);
+        if($user->id == $request->all()['user_id']) {
+            $request_data = $request->all();
 
-            $book->image=  $image_name;
-            $book->save();
+            $book = Book::create($request_data);
+
+            if ($request->image) {
+                $image_name = time() . '.' . $request->image->extension();
+
+                $request->image->move(public_path('/images/books'), $image_name);
+
+                $book->image = $image_name;
+                $book->save();
+            }
+//        $book->user_id = Auth::user()->id;
+//        $book->save();
+
+            return to_route('books.index');
         }
-
-        return to_route('books.index');
     }
 
 
@@ -125,6 +138,11 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         //
+
+        ## user can only delete his own books .
+        if(! Gate::allows('delete-book', $book)){
+            abort(403);
+            }
         $this->deleteImage($book);
         $book->delete();
 

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\User;
+use Illuminate\Pagination\Paginator;
 class ArticleController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class ArticleController extends Controller
     public function index()
     {
         //
-        $articles=  Article::all();
+        $articles=  Article::paginate(5);
         return view('articles.index', ['articles'=>$articles]);
     }
 
@@ -65,6 +66,11 @@ class ArticleController extends Controller
     public function update(UpdateArticleRequest $request, Article $article)
     {
         //
+
+        if ($request->user()->cannot('update', $article)) {
+            abort(403);
+        }
+
         $old_image=  $article->image;
         $article->update($request->all());
         $this->save_image($request->image, $article);

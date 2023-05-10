@@ -23,7 +23,7 @@
     <form method="POST" action="{{route('books.store')}}" enctype="multipart/form-data">
         @method('post')
         @csrf
-
+        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
         <div class="mb-3">
             <label class="form-label">Book Title</label>
             <input type="text" class="form-control"

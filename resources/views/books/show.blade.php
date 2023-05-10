@@ -12,6 +12,9 @@
             <p class="card-text">No_of_pages: {{$book->no_of_pages}}</p>
             <p class="card-text">Created_at: {{$book->created_at}}</p>
             <p class="card-text">Updated_at: {{$book->updated_at}}</p>
+            @can('update-book', $book , Auth::user())
+                <a href="{{route('books.edit', $book->id)}}" class="btn btn-warning">Edit </a>
+            @endcan
             <a href="{{route('books.index')}}" class="btn btn-primary">Back to all books </a>
         </div>
     </div>

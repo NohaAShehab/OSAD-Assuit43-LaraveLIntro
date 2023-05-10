@@ -32,3 +32,10 @@ Route::get('/books/create', [BookController::class, 'create'])
 
 Authorization
 
+--> user --> logged  ---> edit , delete  post ---> post creater
+
+--> gates , policies
+
+
+
+#### service provider --->

@@ -28,6 +28,7 @@
         @endforeach
 
     </table>
+    {{$articles->links()}}
 
     <td>  <a href="{{route('articles.create')}}"  class="btn btn-primary">  Create Article</a> </td>
 @endsection

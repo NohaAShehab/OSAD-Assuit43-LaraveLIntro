@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\User;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Http\Response;
 class ArticleController extends Controller
 {
     /**
@@ -38,7 +39,8 @@ class ArticleController extends Controller
         $article=Article::create($request->all());
 
         $this->save_image($request->image, $article);
-        return to_route('articles.index');
+//        return to_route('articles.index');
+        return new Response('',201);
     }
 
     /**
@@ -114,6 +116,11 @@ class ArticleController extends Controller
             $article->image = $image_name;
             $article->save();
         }
+    }
+
+    function  get_articles(){
+        $articles = Article::all();
+        return $articles;  # serialization  data ---> return json objects
     }
 }
 

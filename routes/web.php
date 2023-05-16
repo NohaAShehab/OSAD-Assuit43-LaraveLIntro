@@ -93,7 +93,7 @@ Route::delete("/books/{book}", [BookController::class, 'destroy'])->name('books.
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
-
+Route::get('articles/objects', [ArticleController::class, 'get_articles']);
 Route::resource('/articles',ArticleController::class );
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');

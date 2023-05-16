@@ -6,28 +6,49 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Http\Resources\ArticleResource;
+use App\Http\Requests\API\StoreArticleRequest;
 
 class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+    function __construct(){
+        $this->middleware('auth:sanctum')->only('store');
+    }
     public function index()
     {
         //
-        return Article::all();
+//        return Article::all();  # return array of object
+        return ArticleResource::collection(Article::all());
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+//    public function store(Request $request)
+//    {
+//        //
+//
+//        $article = Article::create($request->all());
+//        $this->save_image($request->image, $article);
+////        return new  Response($article, 201);
+////        return new Response(new ArticleResource($article), 201);
+//        return new ArticleResource($article);
+//    }
+    public function store(StoreArticleRequest $request)
     {
         //
+        ## validate request ?
+//        $request->validate(['title'=>'required'],['title'=>'title required']);
 
         $article = Article::create($request->all());
         $this->save_image($request->image, $article);
-        return new  Response($article, 201);
+//        return new  Response($article, 201);
+//        return new Response(new ArticleResource($article), 201);
+        return new ArticleResource($article);
     }
 
     /**
@@ -37,7 +58,8 @@ class ArticleController extends Controller
     {
         //
         if ($article){
-            return $article;
+//            return $article; # return article object
+            return  new ArticleResource($article);  #
         }
         return  new Response('', 205);
 
@@ -51,14 +73,15 @@ class ArticleController extends Controller
 //        dd($article);
         //
 //        dump($request->all());
-//        $old_image=  $article->image;
+        $old_image=  $article->image;
         $article->update($request->all());
-//        $this->save_image($request->image, $article);
-//        if($request->image){
-//            $this->delete_image($old_image);
-//        }
+        $this->save_image($request->image, $article);
+        if($request->image){
+            $this->delete_image($old_image);
+        }
 
-        return new Response($article, '200');
+//        return new Response($article, '200');
+        return new ArticleResource($article);
 
     }
 
